@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <span class="h3">Listado de Candidatos</span>
+        <button
+          type="button"
+          class="btn btn-dark float-end p-2"
+          routerLink="/candidatos/crear"
+        >
+          <i class="bi bi-person-add p-2 fs-5"> Agregar</i>
+        </button>
+        <div>
+          <table
+            class="table table-striped mt-5"
+            *ngIf="listaCandidatos.length > 0; else noHayCandidatos"
+          >
+            <thead>
+              <tr>
+                <th>Nombre y apellidos</th>
+                <th>DNI</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Dirección</th>
+                <th>Fecha nacimiento</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let candidato of listaCandidatos">
+                <td>{{ candidato.nombre }}, {{ candidato.apellidos }}</td>
+                <td>{{ candidato.dni }}</td>
+                <td>{{ candidato.email }}</td>
+                <td>{{ candidato.telefono }}</td>
+                <td>{{ candidato.direccion }}</td>
+                <td>{{ candidato.fechaNacimiento }}</td>
+                <td>
+                  <i
+                    class="bi bi-pencil-square fs-5 me-2 text-primary"
+                    routerLink="/candidatos/editar/{{ candidato.id }}"
+                  ></i>
+                  <i
+                    *ngIf="candidato.id"
+                    (click)="eliminarCandidato(candidato.id, candidato.dni)"
+                    class="bi bi-trash fs-5 text-danger"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noHayCandidatos>
+            <div class="text-center">
+              <span class="badge bg-secondary my-4 fs-6 p-2"
+                >No hay datos para mostrar</span
+              >
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  

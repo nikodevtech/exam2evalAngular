@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "examen2eval",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

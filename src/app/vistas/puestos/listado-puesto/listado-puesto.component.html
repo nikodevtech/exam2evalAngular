@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <span class="h3">Listado de Puestos</span>
+        <button
+          type="button"
+          class="btn btn-dark float-end p-2"
+          routerLink="/puestos/crear"
+        >
+          <i class="bi bi-building-fill-add fs-5"> Agregar</i>
+        </button>
+        <div>
+          <table
+            class="table table-striped mt-5"
+            *ngIf="listaPuestos.length > 0; else noHayPuestos"
+          >
+            <thead>
+              <tr>
+                <th>Nombre del puesto</th>
+                <th>Empresa</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let puesto of listaPuestos">
+                <td>{{ puesto.nombre }}</td>
+                <td>{{ puesto.empresa }}</td>
+                <td>
+                  <i
+                    class="bi bi-pencil-square fs-5 me-2 text-primary"
+                    routerLink="/puestos/editar/{{ puesto.id }}"
+                  ></i>
+                  <i
+                    *ngIf="puesto.id"
+                    (click)="eliminarPuesto(puesto.id, puesto.nombre)"
+                    class="bi bi-trash fs-5 text-danger"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noHayPuestos>
+            <div class="text-center">
+              <span class="badge bg-secondary my-4 fs-6 p-2"
+                >No hay datos para mostrar</span
+              >
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

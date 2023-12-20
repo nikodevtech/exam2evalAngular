@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "examen2eval": {
+      "hosting": {
+        "examen2eval": [
+          "examen2eval"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "examen2eval"
+  }
+}

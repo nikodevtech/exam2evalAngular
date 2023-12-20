@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <span class="h3">Listado de Entrevistas</span>
+        <button
+          type="button"
+          class="btn btn-dark float-end p-2"
+          routerLink="/entrevistas/crear"
+        >
+        <i class="bi bi-person-vcard fs-5"> Agregar</i>
+        </button>
+        <div>
+          <table
+            class="table table-striped mt-5"
+            *ngIf="listaEntrevistas.length > 0; else noHayEntrevistas"
+          >
+            <thead>
+              <tr>
+                <th>Fecha de la entrevista</th>
+                <th>Puesto que se oferta</th>
+                <th>Candidato que aplica</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let entrevista of listaEntrevistas">
+                <td>{{ entrevista.fechaEntrevista }}</td>
+                <td>{{ entrevista.puestoQueOferta }}</td>
+                <td>{{ entrevista.candidatoQueAplica }}</td>
+                <td>
+                  <i
+                    class="bi bi-pencil-square fs-5 me-2 text-primary"
+                    routerLink="/entrevistas/editar/{{ entrevista.id }}"
+                  ></i>
+                  <i
+                    *ngIf="entrevista.id"
+                    (click)="eliminarEntrevista(entrevista.id, entrevista.fechaEntrevista)"
+                    class="bi bi-trash fs-5 text-danger"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-template #noHayEntrevistas>
+            <div class="text-center">
+              <span class="badge bg-secondary my-4 fs-6 p-2"
+                >No hay datos para mostrar</span
+              >
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

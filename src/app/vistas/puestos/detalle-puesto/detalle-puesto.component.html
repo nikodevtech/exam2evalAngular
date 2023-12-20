@@ -1,0 +1,54 @@
+<div class="container pt-4">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>
+              {{ titulo }}
+            </h3>
+            <span *ngIf="submitted && formPuesto.invalid" class="badge bg-danger">
+              Todos los campos son obligatorios
+            </span>            
+            <br />
+            <form
+              class="mt-4"
+              [formGroup]="formPuesto"
+              (ngSubmit)="agregarEditarPuesto()"
+            >
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    formControlName="nombre"
+                    placeholder="Nombre del puesto"
+                  />
+                </div>
+                <div class="col-12 mt-3">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    formControlName="empresa"
+                    placeholder="Empresa que ofrece el puesto"
+                  />
+                </div>
+              </div>      
+              <div class="mt-3">
+                <button
+                  type="text"
+                  class="btn btn-secondary btn-lg btn-block me-3"
+                  routerLink="/puestos/listado"
+                >
+                  <i class="bi bi-arrow-left-square"> Volver</i> 
+                </button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">
+                  <i class="bi bi-pen"></i> {{ textoButton }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

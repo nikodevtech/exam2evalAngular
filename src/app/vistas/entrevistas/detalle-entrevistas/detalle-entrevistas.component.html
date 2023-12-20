@@ -1,0 +1,63 @@
+<div class="container pt-4">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>
+              {{ titulo }}
+            </h3>
+            <span *ngIf="submitted && formEntrevista.invalid" class="badge bg-danger">
+              Todos los campos son obligatorios
+            </span>            
+            <br />
+            <form
+              class="mt-4"
+              [formGroup]="formEntrevista"
+              (ngSubmit)="agregarEditarEntrevista()"
+            >
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    formControlName="fechaEntrevista"
+                    placeholder="Fecha de la entrevista"
+                  />
+                </div>
+                <div class="col-12 mt-2">
+                  <label for="candidato" class="form-label">Candidato</label>
+                  <select id="candidato" class="form-select form-select-md" formControlName="candidatoQueAplica" required>
+                    <option *ngFor="let candidato of listaCandidatos" [value]="candidato.nombre + ' ' + candidato.apellidos">
+                      {{ candidato.nombre}} - DNI: {{ candidato.dni }} - Teléfono: {{ candidato.telefono }} - Email: {{ candidato.email }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-12 mt-2">
+                  <label for="puesto" class="form-label">Puesto</label>
+                  <select id="puesto" class="form-select form-select-md" formControlName="puestoQueOferta" required>
+                    <option *ngFor="let puesto of listaPuestos" [value]="puesto.nombre + ' ' + puesto.empresa">
+                      Puesto: {{ puesto.nombre}} - Empresa: {{ puesto.empresa }} 
+                    </option>
+                  </select>
+                </div>
+              </div>      
+              <div class="mt-3">
+                <button
+                  type="text"
+                  class="btn btn-secondary btn-lg btn-block me-3"
+                  routerLink="/entrevistas/listado"
+                >
+                  <i class="bi bi-arrow-left-square"> Volver</i> 
+                </button>
+                <button type="submit" class="btn btn-success btn-lg btn-block">
+                  <i class="bi bi-pen"></i> {{ textoButton }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

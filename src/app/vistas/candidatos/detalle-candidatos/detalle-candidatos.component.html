@@ -1,0 +1,97 @@
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3>
+            {{ titulo }}
+          </h3>
+          <span
+            *ngIf="submitted && formCandidato.invalid"
+            class="badge bg-danger"
+            >Todos los campos son obligatorios
+          </span>
+          <span
+            *ngIf="formCandidato.get('email')?.hasError('email')"
+            class="badge bg-danger"
+          >
+            El correo electrónico introducido no tiene el formato correcto.
+          </span>
+          <span
+            *ngIf="formCandidato.get('dni')?.hasError('pattern')"
+            class="badge bg-danger"
+          >
+            El dni debe tener 8 números y una letra.
+          </span>
+          <br />
+          <form
+            class="mt-4"
+            [formGroup]="formCandidato"
+            (ngSubmit)="agregarEditarCandidato()"
+          >
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  formControlName="nombre"
+                  placeholder="nombre"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  formControlName="apellidos"
+                  placeholder="apellidos"
+                />
+              </div>
+            </div>
+            <input
+              class="form-control form-control-lg mt-3"
+              type="text"
+              formControlName="dni"
+              placeholder="DNI"
+            />
+            <input
+              class="form-control form-control-lg mt-3"
+              type="text"
+              formControlName="email"
+              placeholder="email"
+            />
+            <input
+              class="form-control form-control-lg mt-3"
+              type="text"
+              formControlName="direccion"
+              placeholder="dirección"
+            />
+            <input
+              class="form-control form-control-lg mt-3"
+              type="text"
+              formControlName="fechaNacimiento"
+              placeholder="fecha de nacimiento"
+            />
+            <input
+              class="form-control form-control-lg mt-3"
+              type="text"
+              formControlName="telefono"
+              placeholder="telefono"
+            />
+            <div class="mt-3">
+              <button
+                type="text"
+                class="btn btn-secondary btn-lg btn-block me-3"
+                routerLink="/candidatos/listado"
+              >
+                <i class="bi bi-arrow-left-square"> Volver</i>
+              </button>
+              <button type="submit" class="btn btn-success btn-lg btn-block">
+                <i class="bi bi-pen"></i> {{ textoButton }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
